@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  tgmusapi:
+    container_name: tgmus-api
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - /museum/tgmus_api:/app
+      - /home/god/tgmus/output:/app/output
+    ports:
+      - "3013:3000"
+    #tty: true
