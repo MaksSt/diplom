@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  ai:
+    image: python:3.11-slim  # Используем последнюю версию Python
+    volumes:
+      - /home/god/tg:/app  # Привязываем локальную директорию к контейнеру
+    working_dir: /app  # Устанавливаем рабочую директорию
+    command: sh -c "apt update && apt install -y ffmpeg && python -m venv venv && . venv/bin/activate && pip install -r requirements.txt && python bot.py"  # Команда для запуска вашего бота
+    restart: always
+  museum:
+    image: python:3.11-slim  # Используем последнюю версию Python
+    volumes:
+      - /home/god/tgmus:/app  # Привязываем локальную директорию к контейнеру
+    working_dir: /app  # Устанавливаем рабочую директорию
+    command: sh -c "python -m venv venv && . venv/bin/activate && pip install -r requirements.txt && python bot.py"  # Команда для запуска вашего бота
+    restart: always
+    tty: true
